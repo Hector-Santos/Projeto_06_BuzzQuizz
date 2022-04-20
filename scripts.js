@@ -1,4 +1,4 @@
-const tituloQuizz;
-const imagemQuizz;
-const qntdPerguntas;
-const qntdNiveis;
+const tituloQuizz = "";
+const imagemQuizz = "";
+const qntdPerguntas = "";
+const qntdNiveis = "";
