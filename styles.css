@@ -1,0 +1,12 @@
+header{
+    display: flex;
+    height: 69px;
+    background-color: #EC362D;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 45px;
+    font-weight: 500;
+    color: white;
+}
