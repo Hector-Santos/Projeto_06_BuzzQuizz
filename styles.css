@@ -1,12 +1,74 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
 header{
     display: flex;
     height: 69px;
+    width: 100%;
     background-color: #EC362D;
     text-align: center;
     align-items: center;
     justify-content: center;
-    font-family: 'Roboto', sans-serif;
     font-size: 45px;
     font-weight: 500;
     color: white;
+    margin-top: 0;
+}
+
+body{
+    background-color: #E5E5E5;
+    position: relative;
+}
+.container-cria-quizz{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.upperText{
+ margin-top: 71px;
+ font-weight: 600;
+ font-size: 22px ;
+}
+
+input{
+    width: 564px;
+    height: 46px;
+    border-radius: 5px;
+    border: 1px solid #D1D1D1;
+    margin-top: 10px;
+}
+::placeholder {
+    color: #BABABA;
+    text-indent: 2px;
+    opacity: 1;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+.questionario{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 600px;
+    height: auto;
+    background-color: white;
+    margin-top: 27px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+.hidden{
+    display: none;
+}
+
+.criaPerguntas{
+    margin-top: 85px;
+    background-color: #EC362D;
+    color: #FFF5F4;
+    border-radius: 15px;
+    width: 370px;
+    height: 54px;
+    font-weight: 500;
+    font-size: 22px;
 }
