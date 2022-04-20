@@ -37,6 +37,7 @@ input{
     border-radius: 5px;
     border: 1px solid #D1D1D1;
     margin-top: 10px;
+    font-size: 18px;
 }
 ::placeholder {
     color: #BABABA;
