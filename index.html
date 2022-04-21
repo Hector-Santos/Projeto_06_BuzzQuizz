@@ -15,7 +15,9 @@
 </head>
 
 <body>
-    <header>BuzzQuizz</header>
+    <header>BuzzQuizz
+        <button onclick="renderScreen(this)" class="criaQuizz"></button>
+    </header>
     <div class="container-cria-quizz">
         <div class="upperText">Comece pelo começo</div>
         <div class="questionario">
@@ -26,7 +28,28 @@
         </div>
         <button onclick="" class="criaPerguntas">Prosseguir para criar perguntas</button>
     </div>
-    <script></script>
+
+
+    <span class="quizzTitles">Crie suas perguntas</span>
+    <div class="questionario">
+        <span class="quizzTitles">Pergunta 1</span>
+        <input class="pergunta" type="text" placeholder="Texto da pergunta">
+        <input class="cordefundo" type="text" placeholder="Cor de fundo da pergunta">
+        <span class="quizzTitles">Resposta correta</span>
+        <input class="RespostaCorreta" type="text" placeholder="Resposta correta">
+        <input class="URLcorreta" type="text" placeholder="URL da imagem">
+        <span class="quizzTitles">Respostas incorretas</span>
+        <input class="incorretaum" type="text" placeholder="Resposta incorreta 1">
+        <input class="URLincorretaum" type="text" placeholder="URL da imagem">
+        <input class="incorretadois" type="text" placeholder="Resposta incorreta 2">
+        <input class="URLincorretadois" type="text" placeholder="URL da imagem">
+        <input class="incorretatres" type="text" placeholder="Resposta incorreta 3">
+        <input class="URLincorretatres" type="text" placeholder="URL da imagem">
+    </div>
+    <button onclick="renderScreen(this)" class="criaPerguntas avancar">Prosseguir para criar perguntas</button>
+   
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/javascripts/scripts.js"></script>
 
