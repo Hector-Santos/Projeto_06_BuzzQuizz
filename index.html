@@ -16,9 +16,9 @@
 
 <body>
     <header>BuzzQuizz
-        <button onclick="renderScreen(this)" class="criaQuizz"></button>
+        <button onclick="renderScreen(this)" class="criaQuizz hidden"></button>
     </header>
-    <div class="container-cria-quizz">
+    <div class="container-cria-quizz hidden">
         <div class="upperText">Comece pelo começo</div>
         <div class="questionario">
             <input class="titulo" type="text" placeholder="Titulo do seu quiz">
@@ -30,8 +30,8 @@
     </div>
 
 
-    <span class="quizzTitles">Crie suas perguntas</span>
-    <div class="questionario">
+    <span class="quizzTitles hidden">Crie suas perguntas</span>
+    <div class="questionario hidden">
         <span class="quizzTitles">Pergunta 1</span>
         <input class="pergunta" type="text" placeholder="Texto da pergunta">
         <input class="cordefundo" type="text" placeholder="Cor de fundo da pergunta">
@@ -46,20 +46,21 @@
         <input class="incorretatres" type="text" placeholder="Resposta incorreta 3">
         <input class="URLincorretatres" type="text" placeholder="URL da imagem">
     </div>
-    <button onclick="renderScreen(this)" class="criaPerguntas avancar">Prosseguir para criar perguntas</button>
+    <button onclick="renderScreen(this)" class="criaPerguntas avancar hidden">Prosseguir para criar perguntas</button>
    
+    
+
+
+
+
+
+
+
+
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/javascripts/scripts.js"></script>
-
-
-
-
-
-
-
-
 
 </body>
 
