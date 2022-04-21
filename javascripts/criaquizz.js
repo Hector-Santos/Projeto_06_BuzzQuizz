@@ -15,7 +15,7 @@ if(button.classList.contains("criaQuizz")){
        <input class="qtdPerguntas"  type="text" placeholder="Quantidade de perguntas do quizz">
        <input class="qtdNiveis"  type="text" placeholder="Quantidade de níveis do quizz"> 
    </div>
-   <button onclick="renderScreen(this)" class="criaPerguntas avançar">Prosseguir para criar perguntas</button>
+   <button onclick="analisaInput()" class="criaPerguntas avancar">Prosseguir para criar perguntas</button>
    </div>`
 }else if(button.classList.contains("criaPerguntas"))
 document.querySelector(".container-cria-quizz").innerHTML = 
@@ -35,7 +35,27 @@ document.querySelector(".container-cria-quizz").innerHTML =
         <input class="incorretatres" type="text" placeholder="Resposta incorreta 3">
         <input class="URLincorretatres" type="text" placeholder="URL da imagem">
     </div>
-    <button onclick="renderScreen(this)" class="criaNiveis avançar">Prosseguir pra criar níveis</button>
+    <button onclick="renderScreen(this)" class="criaNiveis avancar">Prosseguir pra criar níveis</button>
 </div>`
 }
+function analisaInput(){
+    const titulo = document.querySelector(".tituloQizz").value
+    const imagem = document.querySelector(".tituloQizz").value
+    const perguntas = document.querySelector(".qtdPerguntas").value
+    const níveis = document.querySelector(".qtdNiveis").value
+    function isUrl(string) {
+        let url;
+        try {
+          url = new URL(string);
+        } catch (_) {
+          return false; 
+        }
+        return true
+    }
+    console.log(isUrl(imagem))
 
+    if((titulo.length > 65 || titulo.length <20) ){
+    
+    }
+
+}
