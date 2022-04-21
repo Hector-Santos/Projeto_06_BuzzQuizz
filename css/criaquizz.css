@@ -31,11 +31,7 @@ body{
     align-items: center;
     justify-content: space-between;
 }
-.upperText{
-    margin-top: 71px;
-    font-weight: 600;
-    font-size: 22px ;
-}
+
 .quizzTitles{
  margin-top: 15px;
  font-weight: 600; 
