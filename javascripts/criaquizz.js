@@ -89,7 +89,7 @@ function analisaInputPerguntas() {
         urlIncorretaTres[i] = document.querySelector(".urlIncorretaTres" + i).value
 
         if (pergunta[i].length < 20 || !isHex(corDeFundo[i])
-            || respostaCorreta[i] === "" || incorretaUm[i] === ""
+            || respostaCorreta[i] == "" || incorretaUm[i] == ""
             || !isUrl(urlCorreta[i]) || !isUrl(urlIncorretaUm[i])
             || (!isUrl(urlIncorretaDois[i]) && urlIncorretaDois[i] != "")
             || (!isUrl(urlIncorretaTres[i]) && urlIncorretaTres[i] != "")
