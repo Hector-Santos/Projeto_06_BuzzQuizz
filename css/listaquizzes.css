@@ -1,5 +1,5 @@
 
-.sem-quizz-proprio {
+.semQuizzProprio {
     margin: 0 195px;
     height: 181px;
     display: flex;
@@ -11,7 +11,7 @@
     border-radius: 5px;
     
 }
-.sem-quizz-proprio > h3 {
+.semQuizzProprio > h3 {
     width: 250px;
     height: 107px;
     font-size: 20px;
@@ -20,7 +20,7 @@
     align-items: center;
     text-align: center;
 }
-.botao-criar-grande {
+.botaoCriarGrande {
     width: 151px;
     height: 40px;
     background: #FAFAFA;
@@ -33,28 +33,28 @@
     color: #EC362D;
     cursor: default;
 }
-.com-quizz-proprio {
+.comQuizzProprio {
     width: 1051px;
     margin: 0 auto;
 }
-.label-seus-quizzes {
+.labeSeusQuizzes {
     display: flex;
     align-items: center;
     margin-bottom: 13px;
 }
-.label-seus-quizzes h2 {
+.labelSeusQuizzes h2 {
     margin-right: 17px;
     font-weight: 700;
     font-size: 20px;
 
 }
-.botao-criar-pequeno {
+.botaoCriarPequeno {
     width: 30px;
     height: 30px;
     color: #EC362D;
     cursor: default;
 }
-.lista-seus-quizzes {
+.listaSeusQuizzes {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
