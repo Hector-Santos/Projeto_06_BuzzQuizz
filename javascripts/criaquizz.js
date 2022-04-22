@@ -1,7 +1,7 @@
-const tituloQuizz = "";
-const imagemQuizz = "";
-const qntdPerguntas = "";
-const qntdNiveis = "";
+let tituloQuizz = "";
+let imagemQuizz = "";
+let qtdPerguntas = "";
+let qtdNiveis = "";
 
 
 function renderScreen(button) {
@@ -18,32 +18,16 @@ function renderScreen(button) {
    </div>
    <button onclick="analisaInput() " class="criaPerguntas avancar">Prosseguir para criar perguntas</button>
    </div>`
-    } else if (button.classList.contains("criaPerguntas"))
-        document.querySelector(".container-cria-quizz").innerHTML =
-            `   <span class="quizzTitles">Crie suas perguntas</span>
-    <div class="questionario">
-        <span class="quizzTitles">Pergunta 1</span>
-        <input class="pergunta" type="text" placeholder="Texto da pergunta">
-        <input class="cordefundo" type="text" placeholder="Cor de fundo da pergunta">
-        <span class="quizzTitles">Resposta correta</span>
-        <input class="RespostaCorreta" type="text" placeholder="Resposta correta">
-        <input class="URLcorreta" type="text" placeholder="URL da imagem">
-        <span class="quizzTitles">Respostas incorretas</span>
-        <input class="incorretaum" type="text" placeholder="Resposta incorreta 1">
-        <input class="URLincorretaum" type="text" placeholder="URL da imagem">
-        <input class="incorretadois" type="text" placeholder="Resposta incorreta 2">
-        <input class="URLincorretadois" type="text" placeholder="URL da imagem">
-        <input class="incorretatres" type="text" placeholder="Resposta incorreta 3">
-        <input class="URLincorretatres" type="text" placeholder="URL da imagem">
-    </div>
-    <button onclick="renderScreen(this)" class="criaNiveis avancar">Prosseguir pra criar níveis</button>
-</div>`
+    } else if (button.classList.contains("criaPerguntas")) {
+        criaPerguntas()
+    }
+
 }
 function analisaInput() {
-    const titulo = document.querySelector(".tituloQizz").value
-    const imagem = document.querySelector(".imageURL").value
-    const perguntas = document.querySelector(".qtdPerguntas").value
-    const niveis = document.querySelector(".qtdNiveis").value
+    tituloQuizz = document.querySelector(".tituloQizz").value
+    imagemQuizz = document.querySelector(".imageURL").value
+    qtdPerguntas = document.querySelector(".qtdPerguntas").value
+    qtdNiveis = document.querySelector(".qtdNiveis").value
     function isUrl(string) {
         let url;
         try {
@@ -53,18 +37,53 @@ function analisaInput() {
         }
         return true
     }
-    console.log(parseInt(perguntas))
 
-    if ((titulo.length > 65 || titulo.length < 20) || !isUrl(imagem)
-        || (parseInt(perguntas) == NaN || parseInt(perguntas) < 3 )
-        || (parseInt(niveis) == NaN ||parseInt(niveis) < 2)) {
+    if ((tituloQuizz.length > 65 || tituloQuizz.length < 20) || !isUrl(imagemQuizz)
+        || (parseInt(qtdPerguntas) == NaN || parseInt(qtdPerguntas) < 3)
+        || (parseInt(qtdNiveis) == NaN || parseInt(qtdNiveis) < 2)) {
         alert(`O título deve ter entre 20 e 65 caracteres
-A imagem deve ser um url
+A imagem deve ser um url valida
 O numero de perguntas deve ser um numero inteiro maior ou igual a 3
-O numero de níveis deve ser um numero inteiro maior ou igual a 2`)
-    }else{
+O numero de níveis deve ser um numero inteiro maior ou igual a 2
+Não escreva os numeros por extenso `)
+    } else {
         renderScreen(document.querySelector(".criaPerguntas"))
-
     }
 
 }
+function mostraInput(numero) {
+    if (document.querySelector(".containerInput" + numero).classList.contains("hidden")) {
+        document.querySelector(".containerInput" + numero).classList.remove("hidden")
+    } else {
+        document.querySelector(".containerInput" + numero).classList.add("hidden")
+    }
+}
+
+function criaPerguntas() {
+    document.querySelector(".container-cria-quizz").innerHTML = `<span class="quizzTitles">Crie suas perguntas</span>`
+    for (let i = 1; i <= qtdPerguntas; i++) {
+        document.querySelector(".container-cria-quizz").innerHTML +=
+            `<div class="questionario">
+            <div class="quizzTitles">Pergunta ${i}</div>
+            <ion-icon onclick="mostraInput(${i})" class="editaInput" name="create-outline"></ion-icon>
+            <div class="containerInput${i} hidden">
+            <input class="pergunta" type="text" placeholder="Texto da pergunta">
+            <input class="corDeFundo" type="text" placeholder="Cor de fundo da pergunta">
+            <div class="quizzTitles">Resposta correta</div>
+            <input class="respostaCorreta" type="text" placeholder="Resposta correta">
+            <input class="urlCorreta" type="text" placeholder="URL da imagem">
+            <div class="quizzTitles">Respostas incorretas</div>
+            <input class="incorretaUm" type="text" placeholder="Resposta incorreta 1">
+            <input class="urlIncorretaUm" type="text" placeholder="URL da imagem">
+            <input class="incorretaDois" type="text" placeholder="Resposta incorreta 2">
+            <input class="urlIncorretaDois" type="text" placeholder="URL da imagem">
+            <input class="incorretaTres" type="text" placeholder="Resposta incorreta 3">
+            <input class="urlIncorretaTres" type="text" placeholder="URL da imagem">
+        </div>
+        </div>
+        `
+    }
+    document.querySelector(".container-cria-quizz").innerHTML += 
+    `<button onclick="renderScreen(this)" class="criaNiveis avancar">Prosseguir pra criar níveis</button>`
+}
+
