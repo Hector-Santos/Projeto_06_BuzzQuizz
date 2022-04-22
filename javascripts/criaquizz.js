@@ -19,6 +19,8 @@ function renderScreen(button) {
    </div>`
     } else if (button.classList.contains("criaPerguntas")) {
         criaPerguntas()
+    } else if(button.classList.contains("criaNiveis")){
+        criaNiveis()
     }
 
 }
@@ -66,23 +68,42 @@ function criaPerguntas() {
             <div class="quizzTitles">Pergunta ${i}</div>
             <ion-icon onclick="mostraInput(${i})" class="editaInput" name="create-outline"></ion-icon>
             <div class="containerInput${i} hidden">
-            <input class="pergunta" type="text" placeholder="Texto da pergunta">
-            <input class="corDeFundo" type="text" placeholder="Cor de fundo da pergunta">
+            <input class="pergunta${i}" type="text" placeholder="Texto da pergunta">
+            <input class="corDeFundo${i}" type="text" placeholder="Cor de fundo da pergunta">
             <div class="quizzTitles">Resposta correta</div>
-            <input class="respostaCorreta" type="text" placeholder="Resposta correta">
-            <input class="urlCorreta" type="text" placeholder="URL da imagem">
+            <input class="respostaCorreta${i}" type="text" placeholder="Resposta correta">
+            <input class="urlCorreta${i}" type="text" placeholder="URL da imagem">
             <div class="quizzTitles">Respostas incorretas</div>
-            <input class="incorretaUm" type="text" placeholder="Resposta incorreta 1">
-            <input class="urlIncorretaUm" type="text" placeholder="URL da imagem">
-            <input class="incorretaDois" type="text" placeholder="Resposta incorreta 2">
-            <input class="urlIncorretaDois" type="text" placeholder="URL da imagem">
-            <input class="incorretaTres" type="text" placeholder="Resposta incorreta 3">
-            <input class="urlIncorretaTres" type="text" placeholder="URL da imagem">
+            <input class="incorretaUm${i}" type="text" placeholder="Resposta incorreta 1">
+            <input class="urlIncorretaUm${i}" type="text" placeholder="URL da imagem">
+            <input class="incorretaDois${i}" type="text" placeholder="Resposta incorreta 2">
+            <input class="urlIncorretaDois${i}" type="text" placeholder="URL da imagem">
+            <input class="incorretaTres${i}" type="text" placeholder="Resposta incorreta 3">
+            <input class="urlIncorretaTres${i}" type="text" placeholder="URL da imagem">
         </div>
         </div>
         `
     }
     document.querySelector(".container-cria-quizz").innerHTML += 
     `<button onclick="renderScreen(this)" class="criaNiveis avancar">Prosseguir pra criar níveis</button>`
+}
+function criaNiveis() {
+    document.querySelector(".container-cria-quizz").innerHTML = `<span class="quizzTitles">Agora, decida os níveis</span>`
+    for (let i = 1; i <= qtdNiveis; i++) {
+        document.querySelector(".container-cria-quizz").innerHTML +=
+            `<div class="questionario">
+            <div class="quizzTitles">Nível ${i}</div>
+            <ion-icon onclick="mostraInput(${i})" class="editaInput" name="create-outline"></ion-icon>
+            <div class="containerInput${i} hidden">
+            <input class="nivel${i}" type="text" placeholder="Título do nível">
+            <input class="%acertos{i}" type="text" placeholder="% de acerto mínima">
+            <input class="urlNivel${i}" type="text" placeholder="URL da imagem do nível">
+            <input class="descricaoNivel${i}" type="text" placeholder="Descrição do nível">
+        </div>
+        </div>
+        `
+    }
+    document.querySelector(".container-cria-quizz").innerHTML += 
+    `<button onclick="renderScreen(this)" class="finalizaQuizz avancar">Finalizar Quizz</button>`
 }
 
