@@ -37,7 +37,7 @@
     width: 1051px;
     margin: 0 auto;
 }
-.labeSeusQuizzes {
+.labelSeusQuizzes {
     display: flex;
     align-items: center;
     margin-bottom: 13px;
@@ -60,14 +60,14 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.lista-seus-quizzes img {
+.listaSeusQuizzes img {
     width: 340px;
     height: 181px;
     object-fit: cover;
     border-radius: 5px; 
     margin-bottom: 12px; 
 }
-.lista-seus-quizzes p {
+.listaSeusQuizzes p {
     width: 340px;
     display: flex;
     align-items: center;
@@ -80,6 +80,6 @@
     word-wrap: break-word;
     padding: 0 17px;
 }
-.lista-seus-quizzes li {
+.listaSeusQuizzes li {
     position: relative;
 }

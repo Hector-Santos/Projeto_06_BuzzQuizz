@@ -6,9 +6,9 @@ let qtdNiveis = "";
 
 function renderScreen(button) {
     if (button.classList.contains("criaQuizz")) {
-        document.querySelector(".container-cria-quizz").classList.remove("hidden")
-        document.querySelector(".section-lista").classList.add("hidden")
-        document.querySelector(".container-cria-quizz").innerHTML =
+        document.querySelector(".container").classList.remove("hidden")
+        document.querySelector(".sectionLista").classList.add("hidden")
+        document.querySelector(".container").innerHTML =
             `<div class="quizzTitles">Comece pelo começo</div>
    <div class="questionario">
        <input class="tituloQizz"  type="text" placeholder="Titulo do seu quiz">
@@ -62,9 +62,9 @@ function mostraInput(numero) {
 }
 
 function criaPerguntas() {
-    document.querySelector(".container-cria-quizz").innerHTML = `<span class="quizzTitles">Crie suas perguntas</span>`
+    document.querySelector(".container").innerHTML = `<span class="quizzTitles">Crie suas perguntas</span>`
     for (let i = 1; i <= qtdPerguntas; i++) {
-        document.querySelector(".container-cria-quizz").innerHTML +=
+        document.querySelector(".container").innerHTML +=
             `<div class="questionario">
             <div class="quizzTitles">Pergunta ${i}</div>
             <ion-icon onclick="mostraInput(${i})" class="editaInput" name="create-outline"></ion-icon>
@@ -85,13 +85,13 @@ function criaPerguntas() {
         </div>
         `
     }
-    document.querySelector(".container-cria-quizz").innerHTML += 
+    document.querySelector(".container").innerHTML += 
     `<button onclick="renderScreen(this)" class="criaNiveis avancar">Prosseguir pra criar níveis</button>`
 }
 function criaNiveis() {
-    document.querySelector(".container-cria-quizz").innerHTML = `<span class="quizzTitles">Agora, decida os níveis</span>`
+    document.querySelector(".container").innerHTML = `<span class="quizzTitles">Agora, decida os níveis</span>`
     for (let i = 1; i <= qtdNiveis; i++) {
-        document.querySelector(".container-cria-quizz").innerHTML +=
+        document.querySelector(".container").innerHTML +=
             `<div class="questionario">
             <div class="quizzTitles">Nível ${i}</div>
             <ion-icon onclick="mostraInput(${i})" class="editaInput" name="create-outline"></ion-icon>
@@ -104,7 +104,7 @@ function criaNiveis() {
         </div>
         `
     }
-    document.querySelector(".container-cria-quizz").innerHTML += 
+    document.querySelector(".container").innerHTML += 
     `<button onclick="renderScreen(this)" class="finalizaQuizz avancar">Finalizar Quizz</button>`
 }
 
