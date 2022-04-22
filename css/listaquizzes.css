@@ -83,3 +83,6 @@
 .listaSeusQuizzes li {
     position: relative;
 }
+.hidden{
+    display: none;
+}
