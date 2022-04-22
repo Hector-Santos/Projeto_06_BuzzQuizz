@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/criaquizz.css">
+    <link rel="stylesheet" href="/css/listaquizzes.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -16,13 +17,51 @@
 </head>
 
 <body>
-    <header>BuzzQuizz
-        <button onclick="renderScreen(this)" class="criaQuizz"></button>
-
-    </header>
+    <header>BuzzQuizz</header>
     <div class="container-cria-quizz">
         
     </div>
+
+
+
+    <!--Lista de Quizzes-->
+    <div class="section-lista"> <!--Classe que aplica hidden para criar formulário-->
+        <div class="sem-quizz-wrapper hidden"> <!--Classe para aplicar o hidden qndo tiver quizz próprio-->
+            <div class="sem-quizz-proprio">
+                <h3>Você não criou nenhum quizz ainda :(</h3>
+                <div class="botao-criar-grande criaQuizz" onclick="renderScreen(this)">Criar Quizz</div>
+            </div>
+        </div>
+        <div class="com-quizz-proprio"> <!--Classe para aplicar o hidden qndo não tiver quizz próprio-->
+            <div class="label-seus-quizzes">
+                <h2>Seus Quizzes</h2>
+                <ion-icon class="botao-criar-pequeno criaQuizz" name="add-circle" onclick="renderScreen(this)"></ion-icon>
+            </div>
+            <ul class="lista-seus-quizzes">
+                <li>
+                    <img src="https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Os-Simpsons-Star-Plus-750x422.jpg" alt="Os Simpsons">
+                    <p>Lorem ipsum dolor sit amet consectetur</p>
+                </li>
+                <li>
+                    <img src="https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Os-Simpsons-Star-Plus-750x422.jpg" alt="Os Simpsons">
+                    <p>Lorem ipsum dolor sit amet consectetur</p>
+                </li>
+                <li>
+                    <img src="https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Os-Simpsons-Star-Plus-750x422.jpg" alt="Os Simpsons">
+                    <p>Lorem ipsum dolor sit amet consectetur</p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    </div>
+
+
+
+
+
+
+
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

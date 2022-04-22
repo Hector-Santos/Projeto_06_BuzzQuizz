@@ -7,8 +7,9 @@ let qtdNiveis = "";
 function renderScreen(button) {
     if (button.classList.contains("criaQuizz")) {
         document.querySelector(".container-cria-quizz").classList.remove("hidden")
+        document.querySelector(".section-lista").classList.add("hidden")
         document.querySelector(".container-cria-quizz").innerHTML =
-            `<div class="quizzTitles">Começe pelo começo</div>
+            `<div class="quizzTitles">Comece pelo começo</div>
    <div class="questionario">
        <input class="tituloQizz"  type="text" placeholder="Titulo do seu quiz">
        <input class="imageURL"  type="text" placeholder="URL da imagem do seu quizz">
