@@ -17,12 +17,12 @@ header{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     position: sticky;
     top: 0;
-    margin-bottom: 71px;
+    margin-bottom: 77px;
 }
 
 body{
     font-family: 'Roboto', sans-serif;
-    background-color: #E5E5E5;
+    background-color: #FAFAFA;
     position: relative;
 }
 .container-cria-quizz{
@@ -31,11 +31,7 @@ body{
     align-items: center;
     justify-content: space-between;
 }
-.upperText{
-    margin-top: 71px;
-    font-weight: 600;
-    font-size: 22px ;
-}
+
 .quizzTitles{
  margin-top: 15px;
  font-weight: 600; 
