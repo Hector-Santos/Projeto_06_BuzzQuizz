@@ -75,12 +75,20 @@ input{
     right: 17px;
     font-size: 30px;
 }
-.hidden{
-    display: none;
+
+.imagemQuizz{
+    width: 500px;
+    height: 266px;
+    margin-top: 46px;
+    object-fit: cover;
+    position: relative;
+    border-radius: 5px;
 }
+
 
 .avancar{
     margin-top: 85px;
+    margin-bottom: 20px;
     background-color: #EC362D;
     color: #FFF5F4;
     border-radius: 15px;
@@ -88,4 +96,8 @@ input{
     height: 54px;
     font-weight: 500;
     font-size: 22px;
+}
+
+.hidden{
+    display: none;
 }

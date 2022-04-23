@@ -24,6 +24,7 @@ function renderScreen(button) {
         document.querySelector(".container").classList.remove("hidden")
         document.querySelector(".sectionLista").classList.add("hidden")
         document.querySelector(".container").innerHTML =
+
             `<div class="quizzTitles">Comece pelo começo</div>
    <div class="questionario">
        <input class="tituloQizz"  type="text" placeholder="Titulo do seu quiz">
@@ -37,18 +38,18 @@ function renderScreen(button) {
         criaPerguntas()
     } else if (button.classList.contains("criaNiveis")) {
         criaNiveis()
-    }else if (button.classList.contains("finalizaQuizz"))
+    }else if (button.classList.contains("finalizaQuizz")){
+    enviaQuizz()
     document.querySelector(".container").innerHTML = 
-    `<div class="quizzTitles">Comece pelo começo</div>
-    <div class="questionario">
-        <input class="tituloQizz"  type="text" placeholder="Titulo do seu quiz">
-        <input class="imageURL"  type="text" placeholder="URL da imagem do seu quizz">
-        <input class="qtdPerguntas"  type="text" placeholder="Quantidade de perguntas do quizz">
-        <input class="qtdNiveis"  type="text" placeholder="Quantidade de níveis do quizz"> 
-    </div>
-    <button onclick="analisaInputInicial() " class="criaPerguntas avancar">Prosseguir para criar perguntas</button>
+    `<div class="quizzTitles">Seu quizz está pronto</div>
+        <div class="containerImgQuizz">
+            <img class = "imagemQuizz"src="https://ciclovivo.com.br/wp-content/uploads/2018/10/iStock-536613027.jpg" >
+            <p>aaaaaaaaaaaaaaaaaaaaaaaaaa</>
+        </div>
+    <button onclick="criaQuizz(), exibeQuizz() " class="acessaQuizz avancar">Acessar quizz</button>
+    <div onclick="criaQuizz(), voltaHome()">Voltar para home</div>
     </div>`
-
+    }
 }
 function isUrl(string) {
     let url;
@@ -215,6 +216,10 @@ function criaNiveis() {
     }
     document.querySelector(".container").innerHTML +=
         `<button onclick="analisaInputNiveis()" class="finalizaQuizz avancar">Finalizar Quizz</button>`
+}
+
+function enviaQuizz(){
+    
 }
 
 

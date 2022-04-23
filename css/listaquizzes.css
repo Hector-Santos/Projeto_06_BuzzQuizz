@@ -70,7 +70,7 @@ tela inicial (botão criar quizz)
     border-radius: 5px; 
     margin-bottom: 12px; 
 }
-.listaSeusQuizzes p , .listaTodosQuizzes p {
+.listaSeusQuizzes p , .listaTodosQuizzes p, .containerImgQuizz p{
     width: 340px;
     display: flex;
     align-items: center;
@@ -83,7 +83,16 @@ tela inicial (botão criar quizz)
     word-wrap: break-word;
     padding: 0 17px;
 }
-.listaSeusQuizzes li , .listaTodosQuizzes li {
+.containerImgQuizz p{
+    width: 500px;
+    bottom: 0px;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 60px;
+    padding: 10px 30px 10px 20px;
+}
+
+.listaSeusQuizzes li , .listaTodosQuizzes li, .containerImgQuizz {
     position: relative;
 }
 .containerTodosQuizzes {
