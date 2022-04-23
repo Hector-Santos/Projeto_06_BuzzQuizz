@@ -19,42 +19,59 @@
 <body>
     <header>BuzzQuizz</header>
     <div class="container">
-        
+
     </div>
 
 
 
     <!--Lista de Quizzes-->
-    <div class="sectionLista"> <!--Classe que aplica hidden para criar formulário-->
-        <div class="semQuizzWrapper "> <!--Classe para aplicar o hidden qndo tiver quizz próprio-->
-            <div class="semQuizzProprio hidden">
-                <h3>Você não criou nenhum quizz ainda :(</h3>
-                <div class="botaoCriarGrande criaQuizz" onclick="renderScreen(this)">Criar Quizz</div>
-            </div>
+
+    <!--Classe que aplica hidden para criar formulário-->
+    <div class="sectionLista">
+        <!--Classe para aplicar o hidden qndo tiver quizz próprio-->
+        <div class="semQuizzProprio">
+            <h3>Você não criou nenhum quizz ainda :(</h3>
+            <div class="botaoCriarGrande criaQuizz" onclick="renderScreen(this)">Criar Quizz</div>
         </div>
-        <div class="comQuizzProprio"> <!--Classe para aplicar o hidden qndo não tiver quizz próprio-->
+        <!--Classe para aplicar o hidden qndo não tiver quizz próprio-->
+        <div class="comQuizzProprio hidden">
             <div class="labelSeusQuizzes">
                 <h2>Seus Quizzes</h2>
                 <ion-icon class="botaoCriarPequeno criaQuizz" name="add-circle" onclick="renderScreen(this)"></ion-icon>
             </div>
             <ul class="listaSeusQuizzes">
-                <li>
-                    <img src="https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Os-Simpsons-Star-Plus-750x422.jpg" alt="Os Simpsons">
-                    <p>Lorem ipsum dolor sit amet consectetur</p>
-                </li>
-                <li>
-                    <img src="https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Os-Simpsons-Star-Plus-750x422.jpg" alt="Os Simpsons">
-                    <p>Lorem ipsum dolor sit amet consectetur</p>
-                </li>
-                <li>
-                    <img src="https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Os-Simpsons-Star-Plus-750x422.jpg" alt="Os Simpsons">
+                <li onclick="entrarQuizz(this)">
+                    <img src="https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Os-Simpsons-Star-Plus-750x422.jpg"
+                        alt="Os Simpsons">
                     <p>Lorem ipsum dolor sit amet consectetur</p>
                 </li>
             </ul>
         </div>
+        <div class="containerTodosQuizzes">
+            <div class="labelTodosQuizzes">
+                <h2>Todos os Quizzes</h2>
+            </div>
+            <ul class="listaTodosQuizzes">
+                <li onclick="entrarQuizz(this)">
+                    <img src="https://disneyplusbrasil.com.br/wp-content/uploads/2022/02/Os-Simpsons-Star-Plus-750x422.jpg"
+                        alt="Os Simpsons" >
+                    <p>Lorem ipsum dolor sit amet consectetur</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--Tela de Exibição do Quizz-->
+    <div class="sectionExibirQuizz">
+        
+        
 
     </div>
-    </div>
+
+
+
+
+
 
 
 
@@ -66,6 +83,7 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/javascripts/criaquizz.js"></script>
+    <script src="/javascripts/todosquizzes.js"></script>
 </body>
 
 </html>
