@@ -12,6 +12,10 @@ let incorretaDois = [];
 let urlIncorretaDois = [];
 let incorretaTres = [];
 let urlIncorretaTres = [];
+let nivel = [];
+let acertos = [];
+let urlNivel = [];
+let descricaoNivel = [];
 
 
 
@@ -33,7 +37,17 @@ function renderScreen(button) {
         criaPerguntas()
     } else if (button.classList.contains("criaNiveis")) {
         criaNiveis()
-    }
+    }else if (button.classList.contains("finalizaQuizz"))
+    document.querySelector(".container").innerHTML = 
+    `<div class="quizzTitles">Comece pelo começo</div>
+    <div class="questionario">
+        <input class="tituloQizz"  type="text" placeholder="Titulo do seu quiz">
+        <input class="imageURL"  type="text" placeholder="URL da imagem do seu quizz">
+        <input class="qtdPerguntas"  type="text" placeholder="Quantidade de perguntas do quizz">
+        <input class="qtdNiveis"  type="text" placeholder="Quantidade de níveis do quizz"> 
+    </div>
+    <button onclick="analisaInputInicial() " class="criaPerguntas avancar">Prosseguir para criar perguntas</button>
+    </div>`
 
 }
 function isUrl(string) {
@@ -100,15 +114,54 @@ function analisaInputPerguntas() {
         }
 
     }
-    if(marcador){
+    if (marcador) {
         renderScreen(document.querySelector(".criaNiveis"))
     }
-    else{
+    else {
         alert(`As perguntas devem ter pelo menos 20 caracteres
 As imagens devem ser url's validas
 Deve haver ao menos uma resposta incorreta por pergunta`)
     }
 }
+function analisaInputNiveis() {
+    let marcador
+    let acertos0
+    for (let i = 1; i <= qtdNiveis; i++) {
+        nivel[i] = document.querySelector(".nivel" + i).value
+        acertos[i] = document.querySelector(".acertos" + i).value
+        urlNivel[i] = document.querySelector(".urlNivel" + i).value
+        descricaoNivel[i] = document.querySelector(".descricaoNivel" + i).value
+        console.log(nivel[i])
+        if (parseInt(acertos[i]) == 0){
+            acertos0 = true
+        }
+
+        if (nivel[i].length < 10
+            || (parseInt(acertos[i]) == NaN || parseInt(acertos[i]) < 0 || parseInt(acertos[i]) > 100)
+            || !isUrl(urlNivel[i])
+            || descricaoNivel[i].length < 30 
+            || !acertos0
+        ) {
+            marcador = false
+        } 
+        else 
+        {
+            marcador = true
+        }
+
+    }
+    if (marcador) {
+        renderScreen(document.querySelector(".finalizaQuizz"))
+    }
+    else {
+        alert(`O título dos níveis devem ter pelo menos 10 caracteres
+As porcentagens de acerto devem ser numeros entre 0 e 10
+As imagens devem ser url's validas
+As descrições dos níveis devem ter pelo menos 30 caracteres
+Deve haver ao menos uma porcentagem igual a zero`)
+    }
+}
+
 function mostraInput(numero) {
     if (document.querySelector(".containerInput" + numero).classList.contains("hidden")) {
         document.querySelector(".containerInput" + numero).classList.remove("hidden")
@@ -153,7 +206,7 @@ function criaNiveis() {
             <ion-icon onclick="mostraInput(${i})" class="editaInput" name="create-outline"></ion-icon>
             <div class="containerInput${i} hidden">
             <input class="nivel${i}" type="text" placeholder="Título do nível">
-            <input class="%acertos${i}" type="text" placeholder="% de acerto mínima">
+            <input class="acertos${i}" type="text" placeholder="% de acerto mínima">
             <input class="urlNivel${i}" type="text" placeholder="URL da imagem do nível">
             <input class="descricaoNivel${i}" type="text" placeholder="Descrição do nível">
         </div>
@@ -161,6 +214,8 @@ function criaNiveis() {
         `
     }
     document.querySelector(".container").innerHTML +=
-        `<button onclick="renderScreen(this)" class="finalizaQuizz avancar">Finalizar Quizz</button>`
+        `<button onclick="analisaInputNiveis()" class="finalizaQuizz avancar">Finalizar Quizz</button>`
 }
+
+
 
