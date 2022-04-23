@@ -16,6 +16,7 @@ let nivel = [];
 let acertos = [];
 let urlNivel = [];
 let descricaoNivel = [];
+let quizz = [];
 
 
 
@@ -219,7 +220,63 @@ function criaNiveis() {
 }
 
 function enviaQuizz(){
+    let perguntas = []
+    let niveis = []
+    for(let i = 1; i <= qtdPerguntas; i++){
+        perguntas[i-1] = {
+            title: pergunta[i],
+            color:  corDeFundo[i],
+            answers: [
+                {
+                    text: respostaCorreta[i],
+                    image: urlCorreta[i],
+                    isCorrectAnswer: true
+                },
+                {
+                    text: incorretaUm[i],
+                    image: urlIncorretaUm[i],
+                    isCorrectAnswer: false
+                },
+                {
+                    text: incorretaUm[i],
+                    image: urlIncorretaUm[i],
+                    isCorrectAnswer: false
+                }
+            ]
+        }
+        if(incorretaDois[i] != "")
+        perguntas[i-1].answers += {
+            text: incorretaDois[i],
+            image: urlIncorretaDois[i],
+            isCorrectAnswer: false
+        }
+        if(incorretaTres[i] != "")
+        perguntas[i-1].answers += {
+            text: incorretaTres[i],
+            image: urlIncorretaTres[i],
+            isCorrectAnswer: false
+        }
+    }
     
+    for (let i = 1; i <= qtdNiveis; i++){
+        niveis[i-1] =  {
+            title: nivel[i],
+            image: urlNivel[i],
+            text: descricaoNivel[i],
+            minValue: acertos[i]
+        }
+    }
+    
+    quizz =
+        {
+            title: tituloQuizz,
+            image: imagemQuizz,
+            questions: perguntas,
+            levels: niveis
+        }
+
+    let promisse = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", quizz)
+    promisse.then()
 }
 
 
