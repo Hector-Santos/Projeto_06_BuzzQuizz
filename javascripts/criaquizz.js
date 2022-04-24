@@ -18,8 +18,9 @@ let urlNivel = [];
 let descricaoNivel = [];
 let quizz = [];
 let listaId = [];
-
-
+let quizzesServidor = [];
+let quizzesUsuario = [];
+let listaIdSerializada = "";
 function renderScreen(button) {
     if (button.classList.contains("criaQuizz")) {
         document.querySelector(".container").classList.remove("hidden")
@@ -281,7 +282,7 @@ function enviaQuizz(){
 
 function armazenaId(objeto){
     let id = objeto.data.id
-    let listaIdSerializada
+    listaIdSerializada
     if(localStorage.getItem("lista") != null)
     {
     listaIdSerializada = localStorage.getItem("lista")
@@ -299,25 +300,60 @@ function armazenaId(objeto){
 
 
 
+function RecebeQuizz(){
+    let promisse = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes")
+    promisse.then(sortQuizzes)
+
+  
+}
+
+function sortQuizzes(quizzArray){
+
+listaIdSerializada = localStorage.getItem("lista")
+listaId = JSON.parse(listaIdSerializada)
+
+let array = quizzArray.data
+array.forEach(foreachQuizzes)
 
 
 
+function foreachQuizzes(element, index, array){
+   for(let i = 0; i < listaId.length; i++){
+    
+       if (element.id == listaId[i]){
+        quizzesUsuario.push(element)
+   }
+    
+   }
+   quizzesServidor.push(element)
+}
+
+function eliminaQuizzUsuario(){
+    for(let i = 0; i < quizzesUsuario.length; i++){
+        for(let j = 0; j < quizzesServidor.length; j++){
+            if (quizzesUsuario[i].id == quizzesServidor[j].id)
+            quizzesServidor.splice(j,1)
+        }
+    }
+
+}
+eliminaQuizzUsuario()
+
+console.log(quizzesUsuario)
+console.log(quizzesServidor)
+console.log(array)
+
+}
+
+RecebeQuizz()
 
 
-
-
-
-
-
-
-
-// function exibeQuizz(){
-//    document.querySelector(".sectionLista").classList.add("hidden")
+//  document.querySelector(".sectionLista").classList.add("hidden")
 //    const sectionExibirQuizz = document.querySelector(".sectionExibirQuizz");
 //    sectionExibirQuizz.classList.remove("hidden");
 //    sectionExibirQuizz.innerHTML = `
 //    <div class="imagemCover">
-//             <img src="${imagemQuizz}">
+//             <img src="">
 //             <div class="mask-img"></div>
 //             <p>${tituloQuizz}</p>
 //         </div>
@@ -372,9 +408,4 @@ function armazenaId(objeto){
 //         </div>
 //         <a href="">Voltar para home</a>
    
-//    `
-
-// }
-
-
-
+//
