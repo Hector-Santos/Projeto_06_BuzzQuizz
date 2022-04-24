@@ -17,7 +17,7 @@ let acertos = [];
 let urlNivel = [];
 let descricaoNivel = [];
 let quizz = [];
-
+let listaId = [];
 
 
 function renderScreen(button) {
@@ -276,8 +276,105 @@ function enviaQuizz(){
         }
 
     let promisse = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", quizz)
-    promisse.then()
+    promisse.then(armazenaId)
 }
+
+function armazenaId(objeto){
+    let id = objeto.data.id
+    let listaIdSerializada
+    if(localStorage.getItem("lista") != null)
+    {
+    listaIdSerializada = localStorage.getItem("lista")
+    listaId = JSON.parse(listaIdSerializada)
+}
+    listaId.push(id)
+    listaIdSerializada = JSON.stringify(listaId)
+    localStorage.setItem("lista", listaIdSerializada)
+    console.log(listaId) 
+    console.log(localStorage.getItem("lista"))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function exibeQuizz(){
+//    document.querySelector(".sectionLista").classList.add("hidden")
+//    const sectionExibirQuizz = document.querySelector(".sectionExibirQuizz");
+//    sectionExibirQuizz.classList.remove("hidden");
+//    sectionExibirQuizz.innerHTML = `
+//    <div class="imagemCover">
+//             <img src="${imagemQuizz}">
+//             <div class="mask-img"></div>
+//             <p>${tituloQuizz}</p>
+//         </div>
+//         <ul class="perguntasQuizz">  
+//         </ul>`
+        
+
+//         for(let i = 1; i <= qtdPerguntas; i++){
+//         document.querySelector(".perguntasQizz").innerHTML +=`
+//         <li>
+//         <div class="tituloPergunta">
+//             <p>${pergunta[i]}</p>
+//         </div>
+//         <div class="opcoesPergunta">
+//             <div>
+//                 <img src="https://www.comboinfinito.com.br/principal/wp-content/uploads/2019/07/Yu-Gi-Oh-1.jpg" alt="">
+//                 <h4>Teste</h4>
+//             </div>
+//             <div>
+//                 <img src="https://www.comboinfinito.com.br/principal/wp-content/uploads/2019/07/Yu-Gi-Oh-1.jpg" alt="">
+//                 <h4>Teste</h4>
+//             </div>
+//             <div>
+//                 <img src="https://www.comboinfinito.com.br/principal/wp-content/uploads/2019/07/Yu-Gi-Oh-1.jpg" alt="">
+//                 <h4>Teste</h4>
+//             </div>
+//             <div>
+//                 <img src="https://www.comboinfinito.com.br/principal/wp-content/uploads/2019/07/Yu-Gi-Oh-1.jpg" alt="">
+//                 <h4>Teste</h4>
+//             </div>
+//         </div>
+//         </li>
+        
+//         `
+
+//         }    
+//         `
+        
+            
+            
+//         <div class="resultadoQuizz">
+//             <div class="tituloResultado">
+//                 <p>Lorem ipsum dolor sit amet! Debitis tempore dignissimos suscipit!</p>
+//             </div>
+//             <div class="resultadoWrapper">
+//                 <img src="https://i.kym-cdn.com/photos/images/original/001/199/337/8f2.png" alt="">
+//                 <p>Parabéns! Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque officiis aut maiores accusamus! Eius repellendus deleniti ipsam accusantium, inventore excepturi quaerat odio eos harum repellat dolorem autem...</p>
+//             </div>                
+//         </div>
+//         <div class="botaoReiniciarQuizz">
+//             <h4>Reiniciar Quizz</h4>
+//         </div>
+//         <a href="">Voltar para home</a>
+   
+//    `
+
+// }
 
 
 
