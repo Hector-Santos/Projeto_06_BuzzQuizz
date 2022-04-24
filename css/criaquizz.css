@@ -47,6 +47,7 @@ input{
     margin-top: 10px;
     font-size: 18px;
 }
+
 ::placeholder {
     color: #BABABA;
     text-indent: 2px;
@@ -100,4 +101,36 @@ input{
 
 .hidden{
     display: none;
+}
+
+@media (max-width: 1100px){
+
+    .questionario{
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        background-color: white;
+        margin-top: 27px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        padding-left: 10%;
+        position: relative;
+    }
+
+    input{
+        width: 90%;
+        height: 46px;
+        border-radius: 5px;
+        border: 1px solid #D1D1D1;
+        margin-top: 10px;
+        font-size: 18px;
+    }
+
+    .descricao{
+        height: 177px;
+    }
+    
+
 }

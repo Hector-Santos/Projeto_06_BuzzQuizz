@@ -44,10 +44,10 @@ function renderScreen(button) {
     document.querySelector(".container").innerHTML = 
     `<div class="quizzTitles">Seu quizz está pronto</div>
         <div class="containerImgQuizz">
-            <img class = "imagemQuizz"src="https://ciclovivo.com.br/wp-content/uploads/2018/10/iStock-536613027.jpg" >
-            <p>aaaaaaaaaaaaaaaaaaaaaaaaaa</>
+            <img onclick="criaQuizz(), exibeQuizz()" class = "imagemQuizz"src="${imagemQuizz}" >
+            <p>${tituloQuizz}</>
         </div>
-    <button onclick="criaQuizz(), exibeQuizz() " class="acessaQuizz avancar">Acessar quizz</button>
+    <button onclick="criaQuizz(), exibeQuizz()" class="acessaQuizz avancar">Acessar quizz</button>
     <div onclick="criaQuizz(), voltaHome()">Voltar para home</div>
     </div>`
     }
@@ -210,7 +210,7 @@ function criaNiveis() {
             <input class="nivel${i}" type="text" placeholder="Título do nível">
             <input class="acertos${i}" type="text" placeholder="% de acerto mínima">
             <input class="urlNivel${i}" type="text" placeholder="URL da imagem do nível">
-            <input class="descricaoNivel${i}" type="text" placeholder="Descrição do nível">
+            <input class="descricaoNivel${i} descricao" type="text" placeholder="Descrição do nível">
         </div>
         </div>
         `
