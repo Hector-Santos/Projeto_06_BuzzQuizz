@@ -72,6 +72,7 @@ tela inicial (botão criar quizz)
 }
 .listaSeusQuizzes p , .listaTodosQuizzes p, .containerImgQuizz p{
     width: 340px;
+    height: 100px;
     display: flex;
     align-items: center;
     color: #FFFFFF;
@@ -79,9 +80,10 @@ tela inicial (botão criar quizz)
     line-height: 22px;
     position: absolute;
     bottom: 15px;
-    background: linear-gradient(to bottom, rgba(255,0,0,0), rgb(3, 3, 3));
+    background:linear-gradient(180deg, rgba(255,0,0,0), rgb(3, 3, 3));
     word-wrap: break-word;
     padding: 0 17px;
+    overflow: hidden;
 }
 .containerImgQuizz p{
     width: 500px;
@@ -260,7 +262,18 @@ exibição da tela do quizz
     height: 44px;
     text-align: center;
 }
-
+.respostaCerta h4 {
+    color: #009C22;
+}
+.respostaErrada h4{
+    color: #FF4B4B;
+}
+.esbranquicado {
+    opacity: 0.3;
+}
+.opcaoClicada {
+    opacity: 1.0;
+}
 
 
 
