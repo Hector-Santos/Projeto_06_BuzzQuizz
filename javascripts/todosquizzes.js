@@ -1,9 +1,9 @@
 const API = "https://mock-api.driven.com.br/api/v6/buzzquizz/";
 
-function mostrarQuizzes(){
-    console.log (quizzesServidor)
+function mostrarQuizzesServidor() {
+    
     let listaTodosQuizzes = document.querySelector(".listaTodosQuizzes")
-    for(let i = 0; i < quizzesServidor.length; i++){
+    for (let i = 0; i < quizzesServidor.length; i++) {
         listaTodosQuizzes.innerHTML += `
                 <li data-id="${quizzesServidor[i].id}" onclick="entrarQuizz(this)">
                     <img src="${quizzesServidor[i].image}">
@@ -12,26 +12,46 @@ function mostrarQuizzes(){
     `
 
     }
-   
+
+}
+function mostrarQuizzesUsuario() {
+    
+    console.log(quizzesUsuario.length)
+    if(quizzesUsuario.length>0){
+        document.querySelector(".semQuizzProprio").classList.add("hidden")
+        document.querySelector(".comQuizzProprio").classList.remove("hidden") 
+    }
+    
+    let listaTodosQuizzes = document.querySelector(".listaSeusQuizzes")
+    for (let i = 0; i < quizzesUsuario.length; i++) {
+        listaTodosQuizzes.innerHTML += `
+                <li data-id="${quizzesUsuario[i].id}" onclick="entrarQuizz(this)">
+                    <img src="${quizzesUsuario[i].image}">
+                    <p>${quizzesUsuario[i].title}</p>
+                </li>
+    `
+
+    }
+
 }
 
 
 function entrarQuizz(element) {
+    RecebeQuizz()
+    let thisQuizz
     document.querySelector(".sectionLista").classList.add("hidden");
     const sectionExibirQuizz = document.querySelector(".sectionExibirQuizz");
     sectionExibirQuizz.classList.remove("hidden");
-
-    for (let i = 0 ; i < todosOsQuizzes.length ; i++){
-        if (parseInt(element.dataset.id) === parseInt(todosOsQuizzes[i].id) ){
-            console.log("achou")
-            console.log(element.dataset.id)
-            console.log (todosOsQuizzes[i].questions)
-
-            sectionExibirQuizz.innerHTML = `
+    for (let i = 0; i < todosOsQuizzes.length; i++) {
+        if (parseInt(element.dataset.id) === parseInt(todosOsQuizzes[i].id)) {
+            thisQuizz = todosOsQuizzes[i]
+        }
+    }
+    sectionExibirQuizz.innerHTML = `
             <div class="imagemCover">
-                    <img src="${todosOsQuizzes[i].image}">
+                    <img src="${thisQuizz.image}">
                     <div class="mask-img"></div>
-                    <p>${todosOsQuizzes[i].title}</p>
+                    <p>${thisQuizz.title}</p>
                  </div>
                  <ul class="perguntasQuizz">
                     
@@ -39,61 +59,40 @@ function entrarQuizz(element) {
                  <div class="botaoReiniciarQuizz">
                     <h4>Reiniciar Quizz</h4>
                  </div>
-                 <a href="">Voltar para home</a>  
-            `;
-            let arrPerguntas = todosOsQuizzes[i].questions;
-            for(let index = 0 ; index < arrPerguntas.length ; index ++ ){
-                let listaPerguntas = document.querySelector(".perguntasQuizz");
-                listaPerguntas.innerHTML+= `
-                <li>
-                        <div class="tituloPergunta">
-                            <p>${arrPerguntas[index].title}</p>
-                        </div>
-                        <div class="opcoesPergunta">
-                            <div onclick="mostrarResposta(this)">
-                                <img src="https://www.comboinfinito.com.br/principal/wp-content/uploads/2019/07/Yu-Gi-Oh-1.jpg">
-                                <h4>Teste</h4>
-                            </div>
-                            <div onclick="mostrarResposta(this)">
-                                <img src="https://www.comboinfinito.com.br/principal/wp-content/uploads/2019/07/Yu-Gi-Oh-1.jpg" >
-                                <h4>Teste</h4>
-                            </div>
-                            <div onclick="mostrarResposta(this)">
-                                <img src="https://www.comboinfinito.com.br/principal/wp-content/uploads/2019/07/Yu-Gi-Oh-1.jpg" >
-                                <h4>Teste</h4>
-                            </div>
-                            <div onclick="mostrarResposta(this)">
-                                <img src="https://www.comboinfinito.com.br/principal/wp-content/uploads/2019/07/Yu-Gi-Oh-1.jpg" >
-                                <h4>Teste</h4>
-                            </div>
-                        </div>
-                    </li>                
-                
-                
-                `
+                 <a href="">Voltar para home</a> 
+                 
+                 `
+    for (let i = 0; i < thisQuizz.questions.length; i++) {
+        let respostas = shuffleArray(thisQuizz.questions[i].answers)
 
-
-
-
-                
-            }
-
-
+        document.querySelector(".perguntasQuizz").innerHTML += `
+                     <li>
+                     <div class="tituloPergunta pergunta${i}">
+                         <p>${thisQuizz.questions[i].title}</p>
+                     </div>
+                     <div class="opcoesPergunta pergunta${i}">
+                     </div>   
+                     </li>`
+        document.querySelector(`.tituloPergunta.pergunta${i}`).style.backgroundColor = thisQuizz.questions[i].color
+        for (let j = 0; j < thisQuizz.questions[i].answers.length; j++) {
+            document.querySelector(`.opcoesPergunta.pergunta${i}`).innerHTML += `
+                       <div onclick = " mostrarResposta(this)"> 
+                             <img src="${respostas[j].image}" alt="">
+                             <h4>${respostas[j].text}</h4>
+                         </div>
+                     `
         }
-        
     }
-
-    
-    
 }
+
 
 function mostrarResposta(element) {
     let listaOpcoes = document.querySelectorAll(".opcoesPergunta > div");
-    console.log(listaOpcoes)
-    for (let i = 0 ; i < listaOpcoes.length ; i++ ) {   
-        if (listaOpcoes[i].classList.contains("esbranquicado")){
+    
+    for (let i = 0; i < listaOpcoes.length; i++) {
+        if (listaOpcoes[i].classList.contains("esbranquicado")) {
             return;
-        } else { 
+        } else {
             listaOpcoes[i].classList.add("esbranquicado")
         }
     }

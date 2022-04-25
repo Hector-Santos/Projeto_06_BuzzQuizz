@@ -21,9 +21,11 @@ let listaId = [];
 let quizzesServidor = [];
 let quizzesUsuario = [];
 let listaIdSerializada = "";
-RecebeQuizz()
+let todosOsQuizzes=[]
+
 
 function renderScreen(button) {
+    
     if (button.classList.contains("criaQuizz")) {
         document.querySelector(".container").classList.remove("hidden")
         document.querySelector(".sectionLista").classList.add("hidden")
@@ -47,7 +49,7 @@ function renderScreen(button) {
         document.querySelector(".container").innerHTML =
             `<div class="quizzTitles">Seu quizz está pronto</div>
         <div class="containerImgQuizz">
-            <img onclick=" exibeQuizz(${quizz})" class = "imagemQuizz"src="${imagemQuizz}" >
+            <img onclick=" exibeQuizz()" class = "imagemQuizz"src="${imagemQuizz}" >
             <p>${tituloQuizz}</>
         </div>
     <button onclick=" exibeQuizz()" class="acessaQuizz avancar">Acessar quizz</button>
@@ -136,7 +138,7 @@ function analisaInputNiveis() {
         acertos[i] = document.querySelector(".acertos" + i).value
         urlNivel[i] = document.querySelector(".urlNivel" + i).value
         descricaoNivel[i] = document.querySelector(".descricaoNivel" + i).value
-        console.log(nivel[i])
+        
         if (parseInt(acertos[i]) == 0) {
             acertos0 = true
         }
@@ -287,15 +289,13 @@ function armazenaId(objeto) {
     listaId.push(id)
     listaIdSerializada = JSON.stringify(listaId)
     localStorage.setItem("lista", listaIdSerializada)
-    console.log(listaId)
-    console.log(localStorage.getItem("lista"))
-    quizz = objeto
+   
 }
 
 
 
 
-console.log(quizzesServidor.length)
+RecebeQuizz()
 
 function RecebeQuizz() {
     let promisse = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes")
@@ -308,10 +308,11 @@ function sortQuizzes(quizzArray) {
     listaIdSerializada = localStorage.getItem("lista")
     listaId = JSON.parse(listaIdSerializada)
 
-    let array = quizzArray.data
-    array.forEach(foreachQuizzes)
+    todosOsQuizzes = quizzArray.data
+    todosOsQuizzes.forEach(foreachQuizzes)
 
-
+console.log(todosOsQuizzes)
+console.log(listaIdSerializada)
 
     function foreachQuizzes(element) {
         for (let i = 0; i < listaId.length; i++) {
@@ -338,12 +339,14 @@ function sortQuizzes(quizzArray) {
 
    
  eliminaQuizzUsuario()
-
- mostrarQuizzes()
+ mostrarQuizzesUsuario()
+ mostrarQuizzesServidor()
 
  }
  
-
+ function voltaHome(){
+    window.location.reload()
+ }
 
 
 
@@ -357,9 +360,9 @@ function shuffleArray(array) {
     }
     return array
 }
-function exibeQuizz(quizz) {
+function exibeQuizz() {
     console.log(quizz)
-    document.querySelector(".sectionLista").classList.add("hidden")
+    document.querySelector(".container").classList.add("hidden")
     const sectionExibirQuizz = document.querySelector(".sectionExibirQuizz");
     sectionExibirQuizz.classList.remove("hidden");
     sectionExibirQuizz.innerHTML = `
@@ -371,7 +374,7 @@ function exibeQuizz(quizz) {
          <ul class="perguntasQuizz">  
          </ul>`
 
-
+        console.log(quizz.questions.length)
     for (let i = 0; i < quizz.questions.length; i++) {
         let respostas = shuffleArray(quizz.questions[i].answers)
         
@@ -383,8 +386,9 @@ function exibeQuizz(quizz) {
          <div class="opcoesPergunta pergunta${i}">
          </div>   
          </li>`
+         console.log(quizz.questions[i].answers.length)
         document.querySelector(`.tituloPergunta.pergunta${i}`).style.backgroundColor = quizz.questions[i].color
-        for (let j = 0; j < quizz.questions.length; j++) {
+        for (let j = 0; j < quizz.questions[i].answers.length; j++) {
             document.querySelector(`.opcoesPergunta.pergunta${i}`).innerHTML += `
            <div>
                  <img src="${respostas[j].image}" alt="">
@@ -394,6 +398,8 @@ function exibeQuizz(quizz) {
         }
     }
 
-
+    sectionExibirQuizz.innerHTML += `<div onclick=" voltaHome()">Voltar para home</div>
+    </div>`
 
 }
+

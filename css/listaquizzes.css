@@ -172,6 +172,7 @@ exibição da tela do quizz
     height: 610px;
     display: flex;
     justify-content: space-between;
+    word-wrap: break-word;
     flex-wrap: wrap;
 }
 .opcoesPergunta div{
