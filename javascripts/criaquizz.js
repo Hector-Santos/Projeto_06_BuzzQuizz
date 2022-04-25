@@ -44,7 +44,6 @@ function renderScreen(button) {
         criaNiveis()
     } else if (button.classList.contains("finalizaQuizz")) {
         enviaQuizz()
-        console.log(quizzesUsuario[quizzesUsuario.length -1])
         document.querySelector(".container").innerHTML =
             `<div class="quizzTitles">Seu quizz está pronto</div>
         <div class="containerImgQuizz">
@@ -302,7 +301,6 @@ function RecebeQuizz() {
     let promisse = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes")
     promisse.then(sortQuizzes)
 
-
 }
 
 function sortQuizzes(quizzArray) {
@@ -315,15 +313,16 @@ function sortQuizzes(quizzArray) {
 
 
 
-    function foreachQuizzes(element,index) {
+    function foreachQuizzes(element) {
         for (let i = 0; i < listaId.length; i++) {
 
             if (element.id == listaId[i]) {
-                quizzesUsuario[index] = element
+                quizzesUsuario.push(element)
+                
             }
 
         }
-        quizzesServidor[index] = element
+        quizzesServidor.push(element)
 
     }
 
@@ -338,9 +337,13 @@ function sortQuizzes(quizzArray) {
     }
 
    
-    eliminaQuizzUsuario()
+ eliminaQuizzUsuario()
 
-}
+ mostrarQuizzes()
+
+ }
+ 
+
 
 
 

@@ -1,19 +1,13 @@
 const API = "https://mock-api.driven.com.br/api/v6/buzzquizz/";
-let todosOsQuizzes;
 
-function obterQuizzes () {
-    let promise = axios.get (`${API}/quizzes`);
-    promise.then(mostrarQuizzes)
-}
-function mostrarQuizzes(response){
-    todosOsQuizzes = response.data
-    console.log (todosOsQuizzes)
+function mostrarQuizzes(){
+    console.log (quizzesServidor)
     let listaTodosQuizzes = document.querySelector(".listaTodosQuizzes")
-    for(let i = 0; i < todosOsQuizzes.length; i++){
+    for(let i = 0; i < quizzesServidor.length; i++){
         listaTodosQuizzes.innerHTML += `
-                <li data-id="${todosOsQuizzes[i].id}" onclick="entrarQuizz(this)">
-                    <img src="${todosOsQuizzes[i].image}">
-                    <p>${todosOsQuizzes[i].title}</p>
+                <li data-id="${quizzesServidor[i].id}" onclick="entrarQuizz(this)">
+                    <img src="${quizzesServidor[i].image}">
+                    <p>${quizzesServidor[i].title}</p>
                 </li>
     `
 
@@ -91,4 +85,3 @@ function mostrarResposta(element) {
 //         </div>
 
 
-obterQuizzes()
