@@ -21,6 +21,8 @@ let listaId = [];
 let quizzesServidor = [];
 let quizzesUsuario = [];
 let listaIdSerializada = "";
+RecebeQuizz()
+
 function renderScreen(button) {
     if (button.classList.contains("criaQuizz")) {
         document.querySelector(".container").classList.remove("hidden")
@@ -40,16 +42,17 @@ function renderScreen(button) {
         criaPerguntas()
     } else if (button.classList.contains("criaNiveis")) {
         criaNiveis()
-    }else if (button.classList.contains("finalizaQuizz")){
-    enviaQuizz()
-    document.querySelector(".container").innerHTML = 
-    `<div class="quizzTitles">Seu quizz está pronto</div>
+    } else if (button.classList.contains("finalizaQuizz")) {
+        enviaQuizz()
+        console.log(quizzesUsuario[quizzesUsuario.length -1])
+        document.querySelector(".container").innerHTML =
+            `<div class="quizzTitles">Seu quizz está pronto</div>
         <div class="containerImgQuizz">
-            <img onclick="criaQuizz(), exibeQuizz()" class = "imagemQuizz"src="${imagemQuizz}" >
+            <img onclick=" exibeQuizz(${quizz})" class = "imagemQuizz"src="${imagemQuizz}" >
             <p>${tituloQuizz}</>
         </div>
-    <button onclick="criaQuizz(), exibeQuizz()" class="acessaQuizz avancar">Acessar quizz</button>
-    <div onclick="criaQuizz(), voltaHome()">Voltar para home</div>
+    <button onclick=" exibeQuizz()" class="acessaQuizz avancar">Acessar quizz</button>
+    <div onclick=" voltaHome()">Voltar para home</div>
     </div>`
     }
 }
@@ -135,20 +138,19 @@ function analisaInputNiveis() {
         urlNivel[i] = document.querySelector(".urlNivel" + i).value
         descricaoNivel[i] = document.querySelector(".descricaoNivel" + i).value
         console.log(nivel[i])
-        if (parseInt(acertos[i]) == 0){
+        if (parseInt(acertos[i]) == 0) {
             acertos0 = true
         }
 
         if (nivel[i].length < 10
             || (parseInt(acertos[i]) == NaN || parseInt(acertos[i]) < 0 || parseInt(acertos[i]) > 100)
             || !isUrl(urlNivel[i])
-            || descricaoNivel[i].length < 30 
+            || descricaoNivel[i].length < 30
             || !acertos0
         ) {
             marcador = false
-        } 
-        else 
-        {
+        }
+        else {
             marcador = true
         }
 
@@ -220,13 +222,13 @@ function criaNiveis() {
         `<button onclick="analisaInputNiveis()" class="finalizaQuizz avancar">Finalizar Quizz</button>`
 }
 
-function enviaQuizz(){
+function enviaQuizz() {
     let perguntas = []
     let niveis = []
-    for(let i = 1; i <= qtdPerguntas; i++){
-        perguntas[i-1] = {
+    for (let i = 1; i <= qtdPerguntas; i++) {
+        perguntas[i - 1] = {
             title: pergunta[i],
-            color:  corDeFundo[i],
+            color: corDeFundo[i],
             answers: [
                 {
                     text: respostaCorreta[i],
@@ -237,175 +239,158 @@ function enviaQuizz(){
                     text: incorretaUm[i],
                     image: urlIncorretaUm[i],
                     isCorrectAnswer: false
-                },
-                {
-                    text: incorretaUm[i],
-                    image: urlIncorretaUm[i],
-                    isCorrectAnswer: false
                 }
+
             ]
         }
-        if(incorretaDois[i] != "")
-        perguntas[i-1].answers += {
-            text: incorretaDois[i],
-            image: urlIncorretaDois[i],
-            isCorrectAnswer: false
-        }
-        if(incorretaTres[i] != "")
-        perguntas[i-1].answers += {
-            text: incorretaTres[i],
-            image: urlIncorretaTres[i],
-            isCorrectAnswer: false
-        }
+        if (incorretaDois[i] != "")
+            perguntas[i - 1].answers += {
+                text: incorretaDois[i],
+                image: urlIncorretaDois[i],
+                isCorrectAnswer: false
+            }
+        if (incorretaTres[i] != "")
+            perguntas[i - 1].answers += {
+                text: incorretaTres[i],
+                image: urlIncorretaTres[i],
+                isCorrectAnswer: false
+            }
     }
-    
-    for (let i = 1; i <= qtdNiveis; i++){
-        niveis[i-1] =  {
+
+    for (let i = 1; i <= qtdNiveis; i++) {
+        niveis[i - 1] = {
             title: nivel[i],
             image: urlNivel[i],
             text: descricaoNivel[i],
             minValue: acertos[i]
         }
     }
-    
+
     quizz =
-        {
-            title: tituloQuizz,
-            image: imagemQuizz,
-            questions: perguntas,
-            levels: niveis
-        }
+    {
+        title: tituloQuizz,
+        image: imagemQuizz,
+        questions: perguntas,
+        levels: niveis
+    }
 
     let promisse = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", quizz)
     promisse.then(armazenaId)
 }
 
-function armazenaId(objeto){
+function armazenaId(objeto) {
     let id = objeto.data.id
     listaIdSerializada
-    if(localStorage.getItem("lista") != null)
-    {
-    listaIdSerializada = localStorage.getItem("lista")
-    listaId = JSON.parse(listaIdSerializada)
-}
+    if (localStorage.getItem("lista") != null) {
+        listaIdSerializada = localStorage.getItem("lista")
+        listaId = JSON.parse(listaIdSerializada)
+    }
     listaId.push(id)
     listaIdSerializada = JSON.stringify(listaId)
     localStorage.setItem("lista", listaIdSerializada)
-    console.log(listaId) 
+    console.log(listaId)
     console.log(localStorage.getItem("lista"))
+    quizz = objeto
 }
 
 
 
 
+console.log(quizzesServidor.length)
 
-
-function RecebeQuizz(){
+function RecebeQuizz() {
     let promisse = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes")
     promisse.then(sortQuizzes)
 
-  
+
 }
 
-function sortQuizzes(quizzArray){
+function sortQuizzes(quizzArray) {
 
-listaIdSerializada = localStorage.getItem("lista")
-listaId = JSON.parse(listaIdSerializada)
+    listaIdSerializada = localStorage.getItem("lista")
+    listaId = JSON.parse(listaIdSerializada)
 
-let array = quizzArray.data
-array.forEach(foreachQuizzes)
+    let array = quizzArray.data
+    array.forEach(foreachQuizzes)
 
 
 
-function foreachQuizzes(element, index, array){
-   for(let i = 0; i < listaId.length; i++){
-    
-       if (element.id == listaId[i]){
-        quizzesUsuario.push(element)
-   }
-    
-   }
-   quizzesServidor.push(element)
+    function foreachQuizzes(element,index) {
+        for (let i = 0; i < listaId.length; i++) {
+
+            if (element.id == listaId[i]) {
+                quizzesUsuario[index] = element
+            }
+
+        }
+        quizzesServidor[index] = element
+
+    }
+
+    function eliminaQuizzUsuario() {
+        for (let i = 0; i < quizzesUsuario.length; i++) {
+            for (let j = 0; j < quizzesServidor.length; j++) {
+                if (quizzesUsuario[i].id == quizzesServidor[j].id){
+                    quizzesServidor.splice(j, 1)}
+            }
+        }
+
+    }
+
+   
+    eliminaQuizzUsuario()
+
 }
 
-function eliminaQuizzUsuario(){
-    for(let i = 0; i < quizzesUsuario.length; i++){
-        for(let j = 0; j < quizzesServidor.length; j++){
-            if (quizzesUsuario[i].id == quizzesServidor[j].id)
-            quizzesServidor.splice(j,1)
+
+
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array
+}
+function exibeQuizz(quizz) {
+    console.log(quizz)
+    document.querySelector(".sectionLista").classList.add("hidden")
+    const sectionExibirQuizz = document.querySelector(".sectionExibirQuizz");
+    sectionExibirQuizz.classList.remove("hidden");
+    sectionExibirQuizz.innerHTML = `
+    <div class="imagemCover">
+             <img src="${quizz.image}">
+             <div class="mask-img"></div>
+             <p>${quizz.title}</p>
+         </div>
+         <ul class="perguntasQuizz">  
+         </ul>`
+
+
+    for (let i = 0; i < quizz.questions.length; i++) {
+        let respostas = shuffleArray(quizz.questions[i].answers)
+        
+        document.querySelector(".perguntasQuizz").innerHTML += `
+         <li>
+         <div class="tituloPergunta pergunta${i}">
+             <p>${quizz.questions[i].title}</p>
+         </div>
+         <div class="opcoesPergunta pergunta${i}">
+         </div>   
+         </li>`
+        document.querySelector(`.tituloPergunta.pergunta${i}`).style.backgroundColor = quizz.questions[i].color
+        for (let j = 0; j < quizz.questions.length; j++) {
+            document.querySelector(`.opcoesPergunta.pergunta${i}`).innerHTML += `
+           <div>
+                 <img src="${respostas[j].image}" alt="">
+                 <h4>${respostas[j].text}</h4>
+             </div>
+         `
         }
     }
 
-}
-eliminaQuizzUsuario()
 
-console.log(quizzesUsuario)
-console.log(quizzesServidor)
-console.log(array)
 
 }
-
-RecebeQuizz()
-
-
-//  document.querySelector(".sectionLista").classList.add("hidden")
-//    const sectionExibirQuizz = document.querySelector(".sectionExibirQuizz");
-//    sectionExibirQuizz.classList.remove("hidden");
-//    sectionExibirQuizz.innerHTML = `
-//    <div class="imagemCover">
-//             <img src="">
-//             <div class="mask-img"></div>
-//             <p>${tituloQuizz}</p>
-//         </div>
-//         <ul class="perguntasQuizz">  
-//         </ul>`
-        
-
-//         for(let i = 1; i <= qtdPerguntas; i++){
-//         document.querySelector(".perguntasQizz").innerHTML +=`
-//         <li>
-//         <div class="tituloPergunta">
-//             <p>${pergunta[i]}</p>
-//         </div>
-//         <div class="opcoesPergunta">
-//             <div>
-//                 <img src="https://www.comboinfinito.com.br/principal/wp-content/uploads/2019/07/Yu-Gi-Oh-1.jpg" alt="">
-//                 <h4>Teste</h4>
-//             </div>
-//             <div>
-//                 <img src="https://www.comboinfinito.com.br/principal/wp-content/uploads/2019/07/Yu-Gi-Oh-1.jpg" alt="">
-//                 <h4>Teste</h4>
-//             </div>
-//             <div>
-//                 <img src="https://www.comboinfinito.com.br/principal/wp-content/uploads/2019/07/Yu-Gi-Oh-1.jpg" alt="">
-//                 <h4>Teste</h4>
-//             </div>
-//             <div>
-//                 <img src="https://www.comboinfinito.com.br/principal/wp-content/uploads/2019/07/Yu-Gi-Oh-1.jpg" alt="">
-//                 <h4>Teste</h4>
-//             </div>
-//         </div>
-//         </li>
-        
-//         `
-
-//         }    
-//         `
-        
-            
-            
-//         <div class="resultadoQuizz">
-//             <div class="tituloResultado">
-//                 <p>Lorem ipsum dolor sit amet! Debitis tempore dignissimos suscipit!</p>
-//             </div>
-//             <div class="resultadoWrapper">
-//                 <img src="https://i.kym-cdn.com/photos/images/original/001/199/337/8f2.png" alt="">
-//                 <p>Parabéns! Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque officiis aut maiores accusamus! Eius repellendus deleniti ipsam accusantium, inventore excepturi quaerat odio eos harum repellat dolorem autem...</p>
-//             </div>                
-//         </div>
-//         <div class="botaoReiniciarQuizz">
-//             <h4>Reiniciar Quizz</h4>
-//         </div>
-//         <a href="">Voltar para home</a>
-   
-//
