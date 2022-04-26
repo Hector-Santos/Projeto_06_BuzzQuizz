@@ -1,7 +1,7 @@
 const API = "https://mock-api.driven.com.br/api/v6/buzzquizz/";
 
 function mostrarQuizzesServidor() {
-    
+
     let listaTodosQuizzes = document.querySelector(".listaTodosQuizzes")
     for (let i = 0; i < quizzesServidor.length; i++) {
         listaTodosQuizzes.innerHTML += `
@@ -15,11 +15,11 @@ function mostrarQuizzesServidor() {
 
 }
 function mostrarQuizzesUsuario() {
-    if(quizzesUsuario.length>0){
+    if (quizzesUsuario.length > 0) {
         document.querySelector(".semQuizzProprio").classList.add("hidden")
-        document.querySelector(".comQuizzProprio").classList.remove("hidden") 
+        document.querySelector(".comQuizzProprio").classList.remove("hidden")
     }
-    
+
     let listaTodosQuizzes = document.querySelector(".listaSeusQuizzes")
     for (let i = 0; i < quizzesUsuario.length; i++) {
         listaTodosQuizzes.innerHTML += `
@@ -36,7 +36,7 @@ function mostrarQuizzesUsuario() {
 let thisQuizz;
 function entrarQuizz(element) {
     RecebeQuizz()
-    
+
     document.querySelector(".sectionLista").classList.add("hidden");
     const sectionExibirQuizz = document.querySelector(".sectionExibirQuizz");
     sectionExibirQuizz.classList.remove("hidden");
@@ -63,7 +63,7 @@ function entrarQuizz(element) {
                  
                  `
     for (let i = 0; i < thisQuizz.questions.length; i++) {
-       let respostas = shuffleArray(thisQuizz.questions[i].answers)
+        let respostas = shuffleArray(thisQuizz.questions[i].answers)
 
         document.querySelector(".perguntasQuizz").innerHTML += `
                      <li>
@@ -83,21 +83,21 @@ function entrarQuizz(element) {
                      `
         }
         window.scrollTo(top)
-        
+
     }
 }
 
 let nRespostaCerta = 0;
 function mostrarResposta(element) {
     let listaOpcoes = element.parentNode.querySelectorAll(".opcoesPergunta > div");
-    
+
     for (let i = 0; i < listaOpcoes.length; i++) {
         if (listaOpcoes[i].classList.contains("esbranquicado")) {
             return;
         } else {
             listaOpcoes[i].classList.add("esbranquicado")
         }
-        if (listaOpcoes[i].dataset.correct === "true"){
+        if (listaOpcoes[i].dataset.correct === "true") {
             listaOpcoes[i].classList.add("respostaCerta")
         } else {
             listaOpcoes[i].classList.add("respostaErrada")
@@ -105,22 +105,37 @@ function mostrarResposta(element) {
     }
     element.classList.add("opcaoClicada");
 
-    if(element.classList.contains("respostaCerta")){
+    if (element.classList.contains("respostaCerta")) {
         nRespostaCerta++
     }
-    setTimeout(finalizarQuizz, 2000) 
-    
+    let parent = element.parentNode
+
+    for (let i = 0; i < thisQuizz.questions.length; i++) {
+
+        if (parent.classList.contains(`pergunta${i}`)) {
+            let next = document.querySelector(`.pergunta${i + 1}`)
+            if (next !== null) {
+                next.scrollIntoView()
+            }
+        }
+
+    }
+
+
+
+    setTimeout(finalizarQuizz, 2000)
+
 }
 
 function reiniciarQuizz() {
     let lista = document.querySelectorAll(".opcoesPergunta > div")
     let resultadoQuizz = document.querySelector(".resultadoQuizz")
-    for (let i = 0 ; i < lista.length ; i++){
-       lista[i].classList.remove("esbranquicado");
-       lista[i].classList.remove("opcaoClicada")
-       lista[i].classList.remove("respostaCerta")
-       lista[i].classList.remove("respostaErrada")
-       resultadoQuizz.classList.add("hidden")
+    for (let i = 0; i < lista.length; i++) {
+        lista[i].classList.remove("esbranquicado");
+        lista[i].classList.remove("opcaoClicada")
+        lista[i].classList.remove("respostaCerta")
+        lista[i].classList.remove("respostaErrada")
+        resultadoQuizz.classList.add("hidden")
     }
     nRespostaCerta = 0
     window.scrollTo(top)
@@ -129,15 +144,15 @@ function reiniciarQuizz() {
 function finalizarQuizz() {
     let lista = document.querySelectorAll(".opcaoClicada")
     let resultadoQuizz = document.querySelector(".resultadoQuizz")
-    let score = (nRespostaCerta / thisQuizz.questions.length)*100
+    let score = Math.floor((nRespostaCerta / thisQuizz.questions.length) * 100)
     console.log(score)
 
-    if (thisQuizz.questions.length === lista.length){
+    if (thisQuizz.questions.length === lista.length) {
         resultadoQuizz.classList.remove("hidden")
         resultadoQuizz.scrollIntoView()
-        for(let i = 0 ; i < thisQuizz.levels.length-1; i++){
-            let j = i+1
-            if(thisQuizz.levels[i+1].minValue > score){
+        for (let i = 0; i < thisQuizz.levels.length - 1; i++) {
+            let j = i + 1
+            if (thisQuizz.levels[i + 1].minValue > score) {
                 resultadoQuizz.innerHTML = `
             <div class="tituloResultado">
                 <p>${thisQuizz.levels[i].title}</p>
@@ -150,19 +165,19 @@ function finalizarQuizz() {
             } else {
                 resultadoQuizz.innerHTML = `
                 <div class="tituloResultado">
-                    <p>${thisQuizz.levels[i+1].title}</p>
+                    <p>${thisQuizz.levels[i + 1].title}</p>
                 </div>
                 <div class="resultadoWrapper">
-                     <img src="${thisQuizz.levels[i+1].image}" alt="">
-                     <p>${thisQuizz.levels[i+1].text}</p>
+                     <img src="${thisQuizz.levels[i + 1].image}" alt="">
+                     <p>${thisQuizz.levels[i + 1].text}</p>
                 </div>
             `
 
             }
         }
- 
+
     }
-    
+
 }
 
 
