@@ -1,7 +1,9 @@
 /* 
 tela inicial (botão criar quizz)
 */
-
+html{
+    scroll-behavior: smooth;
+}
 .semQuizzProprio {
     width: 1051px;
     margin: 0 auto 77px auto;
@@ -139,7 +141,7 @@ exibição da tela do quizz
 }
 .perguntasQuizz li {
     width: 759px;
-    height: 676px;
+    height: fit-content;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     display: flex;

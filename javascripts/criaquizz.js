@@ -315,9 +315,6 @@ function sortQuizzes(quizzArray) {
     todosOsQuizzes = quizzArray.data
     todosOsQuizzes.forEach(foreachQuizzes)
 
-console.log(todosOsQuizzes)
-console.log(listaIdSerializada)
-
     function foreachQuizzes(element) {
         for (let i = 0; i < listaId.length; i++) {
 
