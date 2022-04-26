@@ -278,12 +278,197 @@ exibição da tela do quizz
     opacity: 1.0;
 }
 
-
-
-
-
-
-
 .hidden {
     display: none;
+}
+
+
+@media (max-width: 1100px){
+    .semQuizzProprio {
+        width: 90%;
+        margin: 0 auto 77px auto;
+        height: 181px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 1px dashed #D5D5D5;
+        background: #FAFAFA;
+        border-radius: 5px;
+        
+    }
+    .comQuizzProprio {
+        width: 90%;
+        margin: 0 auto 48px auto;
+    }
+    .botaoCriarPequeno {
+        width: 30px;
+        height: 30px;
+        color: #EC362D;
+        cursor: default;
+    }
+    .container{
+        width: 100%;
+    }
+    body{
+        width: 100%;
+    }
+    header{
+        display: flex;
+        height: 69px;
+        width: 100%;
+        background-color: #EC362D;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        font-size: 37px;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin-top: 0;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        position: sticky;
+        top: 0;
+        margin-bottom: 71px;
+        z-index: 1;
+    }
+    .labelSeusQuizzes {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        justify-content: space-between;
+        margin-bottom: 13px;
+    
+    }
+    .labelTodosQuizzes {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        align-items: flex-start;
+        margin-bottom: 13px;
+    }
+    .listaSeusQuizzes , .listaTodosQuizzes {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .sectionLista{
+        width: 100%;
+    }
+     
+    .containerTodosQuizzes {
+        width: 100%;
+        padding-left: 5%;
+        
+    }
+   
+    .perguntasQuizz li {
+        width: 100%;
+        height: fit-content;
+        background-color: #FFFFFF;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 28px;
+        margin-bottom: 48px;
+    }
+    .perguntasQuizz{
+        width: 100%;
+    }
+    .tituloPergunta p {
+        width: 90%;
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 27px;
+        color: #FFFFFF;
+        word-wrap: break-word;
+        text-align: center;
+    }
+    .opcoesPergunta div{
+        width: 48%;
+        height: auto;
+    }
+    .opcoesPergunta{
+        width: 100%;
+        
+    }
+    .tituloPergunta {
+        width: 110%;
+        height: 138px;
+        background-color: #434CA0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .imagemCover p {
+        position: absolute;
+        width: 100%;
+        word-wrap: break-word;
+        font-size: 39px;
+        line-height: 46px;
+        color: #FFFFFF;
+    }
+    .resultadoQuizz {
+        width: 100%;
+        height: 430px;
+        background-color: #FFFFFF;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 57px;
+        padding: 20px;
+    }
+
+    .tituloResultado {
+        width: 110%;
+        height: 99px;
+        background-color: #EC362D;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 18px;
+    
+    }
+    .tituloResultado p {
+        width: 90%;
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 27px;
+        color: #FFFFFF;
+        word-wrap: break-word;
+        text-align: center;
+    }
+    .resultadoWrapper img {
+        width: 90%;
+        height: auto;
+        object-fit: cover;
+        
+    }
+    .resultadoWrapper p {
+        width: 100%;
+        height: auto;
+        font-weight: 700;
+        font-size: 19px;
+        line-height: 25px;
+        color: #484848;
+        word-wrap: break-word;
+    }
+    .resultadoWrapper{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        word-wrap: break-word;
+    }
+    .hidden {
+        display: none;
+    }
 }
