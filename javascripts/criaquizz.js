@@ -304,9 +304,13 @@ function RecebeQuizz() {
 }
 
 function sortQuizzes(quizzArray) {
-
+    listaId = [1, 2, 3]
     listaIdSerializada = localStorage.getItem("lista")
-    listaId = JSON.parse(listaIdSerializada)
+    if (listaIdSerializada !== null){
+        listaId = JSON.parse(listaIdSerializada)
+    }
+      
+    
 
     todosOsQuizzes = quizzArray.data
     todosOsQuizzes.forEach(foreachQuizzes)
@@ -324,6 +328,7 @@ console.log(listaIdSerializada)
 
         }
         quizzesServidor.push(element)
+        
 
     }
 
